@@ -38,13 +38,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+    'authtools',
+    'corsheaders',
+
     'accounts.apps.AccountsConfig',
     'brochure.apps.BrochureConfig',
-
-    'authtools',
+    'theme.apps.ThemeConfig',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -125,3 +130,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'authtools.User'  # new
+
+# django-cors-headers
+# https://pypi.org/project/django-cors-headers/
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000/'
+)
